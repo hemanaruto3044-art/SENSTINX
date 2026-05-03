@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "log": {
+      "title": "Script Log",
+      "description": "A record of a user's Pine Script submission.",
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "The name of the user who submitted the script."
+        },
+        "code": {
+          "type": "string",
+          "description": "The Pine Script code submitted."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time the script was submitted."
+        }
+      },
+      "required": ["username", "code", "createdAt"]
+    },
+    "admin": {
+      "title": "Admin",
+      "description": "A user with administrative privileges.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The Firebase Auth UID of the admin."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email of the admin."
+        }
+      },
+      "required": ["uid", "email"]
+    }
+  },
+  "firestore": {
+    "/logs/{logId}": {
+      "schema": "log",
+      "description": "Collection of user-submitted scripts."
+    },
+    "/admins/{adminId}": {
+      "schema": "admin",
+      "description": "Whitelist of administrative users."
+    }
+  }
+}
